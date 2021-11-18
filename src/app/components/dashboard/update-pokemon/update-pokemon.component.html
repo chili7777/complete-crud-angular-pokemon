@@ -1,0 +1,128 @@
+<mat-toolbar color="warn">
+    <span>Actualizar Pokemon</span>
+    <span class="example-spacer"></span>
+    <button routerLink="/dashboard/pokemones" mat-icon-button class="example-icon favorite-icon" aria-label="">
+        <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>
+<div class="container-xs">
+    
+    <mat-card style="margin-top: 10px;">
+        <form [formGroup]="form" (ngSubmit)="updatePokemon()">
+            <mat-grid-list cols="5" rowHeight="70px">
+                <mat-grid-tile
+                    [colspan] = "2"
+                    [rowspan] = "1"
+                     
+                >
+                    <mat-form-field class="container-input__input">
+                        <mat-label>Nombre</mat-label>
+                        <input type="text" matInput autocomplete="off" formControlName="name">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile
+                    [colspan] = "3"
+                    [rowspan] = "6"
+                    style="background-color: white; border-radius: 60%;"
+                    width="250"
+                    width="250"
+                >
+                    <img [src]="image" width="250" height="250" style="background-color: white;"/>
+    
+                </mat-grid-tile>
+    
+                <mat-grid-tile
+                    [colspan] = "2"
+                    [rowspan] = "1"
+                    
+                >
+                    <mat-form-field class="container-input__input">
+                        <mat-label>Url Imagen</mat-label>
+                        <input type="text" matInput autocomplete="off" formControlName="image">
+                    </mat-form-field>
+                </mat-grid-tile>
+    
+                <mat-grid-tile
+                    [colspan] = "2"
+                    [rowspan] = "1"
+                >
+                    <mat-form-field>
+                        <mat-label>Tipo Pokemon</mat-label>
+                        <mat-select formControlName="type">
+                            <mat-option [value]="option.value" *ngFor="let option of types">{{ option.viewValue }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile
+                    [colspan] = "2"
+                    [rowspan] = "1"
+                >
+                    <div>
+                        <div class="example-label-container example-label-horizontal">
+                            <label id="example-name-label" class="example-name-label">HP: </label>
+                            <mat-slider
+                            formControlName="hp"
+                            thumbLabel
+                            tickInterval="1"
+                            step="1"
+                            min="0"
+                            max="100"
+                            aria-label="units">
+                        </mat-slider>
+                        </div>
+                        
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile
+                    [colspan] = "2"
+                    [rowspan] = "1"
+                >
+                    <div>
+                        <div class="example-label-container example-label-horizontal">
+                            <label id="example-name-label" class="example-name-label">Ataque: </label>
+                            <mat-slider
+                            formControlName="attack"
+                            thumbLabel
+                            tickInterval="1"
+                            step="1"
+                            min="0"
+                            max="100"
+                            aria-label="units">
+                        </mat-slider>
+                        </div>
+                        
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile
+                    [colspan] = "2"
+                    [rowspan] = "1"
+                >
+                    <div>
+                        <div class="example-label-container example-label-horizontal">
+                            <label id="example-name-label" class="example-name-label">Defensa: </label>
+                            <mat-slider
+                            formControlName="defense"
+                            thumbLabel
+                            tickInterval="1"
+                            step="1"
+                            min="0"
+                            max="100"
+                            aria-label="units">
+                        </mat-slider>
+                        </div>
+                        
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile
+                    [colspan] = "2"
+                    [rowspan] = "1"
+                >
+                    <div>
+                        <button mat-flat-button color="secondary" style="margin-right: 20px;">Volver</button>
+                        <button type="submit" [disabled]="form.invalid" mat-flat-button color="primary">Aceptar</button>
+                      </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </mat-card>
+</div>

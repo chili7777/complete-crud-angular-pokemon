@@ -1,0 +1,27 @@
+<div class="container">
+    <mat-spinner *ngIf="loading" diameter="50"></mat-spinner>
+    <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="ingresar()" class="container">
+        <div class="container-pokeball">
+            <div class="pokeball">
+                <div class="pokeball__button"></div>
+            </div>
+        </div>
+        <div class="container-input">
+            <mat-form-field appearance="fill" class="container-input__input">
+                <mat-label>Usuario</mat-label>
+                <input type="text" matInput autocomplete="off" formControlName="usuario">
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill" class="container-input__input">
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput autocomplete="off" formControlName="password">
+            </mat-form-field>
+        </div>
+    
+        <div class="container-button">
+            <button type="submit" [disabled]="form.invalid" mat-fab color="warn" aria-label="Example icon button with a home icon">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>

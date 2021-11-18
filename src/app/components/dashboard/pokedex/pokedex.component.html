@@ -1,0 +1,75 @@
+<div class="container-create-button">
+  <button mat-flat-button color="primary" routerLink="/dashboard/crear-pokemon">
+    <mat-icon>receipt</mat-icon> Crear Pokemon
+  </button>
+</div>
+
+<div *ngIf = "pokemons.length == 0" class="container-xs">
+  <h2  style="color:black">
+    No existen pokemones para enlistar 😔.
+  </h2> 
+</div>
+
+<div *ngIf = "pokemons.length > 0" class="container-filter">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)"placeholder="Ingresar nombre pokemon" #input>
+  </mat-form-field>
+</div>
+<div *ngIf = "pokemons.length > 0" class="container-xs">
+    <mat-card *ngFor="let item of pokemonsFiltering " class="card">
+        <mat-card-header>
+            <img [src]="item.image" mat-card-avatar/>
+          <mat-card-title>{{ item.name }}</mat-card-title>
+          <mat-card-subtitle> # {{ item.id }}</mat-card-subtitle>
+        </mat-card-header>
+        <div class="container-image">
+            <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
+        </div>
+        <div class="container-stats"> 
+            <div>
+                <div class="example-label-container example-label-horizontal">
+                    <label id="example-name-label" class="example-name-label">HP: </label>
+                    <label class="example-value-label">{{item.hp}}</label>
+                </div>
+                <mat-slider thumbLabel tickInterval="10" step="1" min="0" max="100" aria-label="units" [value]="item.hp" disabled></mat-slider>
+            </div>
+            
+            <div>
+                <div class="example-label-container example-label-horizontal">
+                    <label id="example-name-label" class="example-name-label">Ataque: </label>
+                    <label class="example-value-label">{{item.attack}}</label>
+                  </div>
+              <mat-slider thumbLabel tickInterval="10" step="1" min="0" max="100" aria-label="units" [value]="item.attack" disabled></mat-slider>  
+            </div>
+             
+            <div>
+                <div class="example-label-container example-label-horizontal">
+                    <label id="example-name-label" class="example-name-label">Defensa: </label>
+                    <label class="example-value-label">{{item.defense}}</label>
+                </div>
+                <mat-slider thumbLabel tickInterval="10" step="1" min="0" max="100" aria-label="units" [value]="item.defense" disabled></mat-slider>
+            </div>
+              
+        </div>
+    
+        <mat-card-actions>
+          <div class="container-stats">
+            <button mat-flat-button [ngClass]="'mat-flat-button-' + item.type">{{ item.type }}</button>
+          </div>
+
+          <div class="container-stats">
+            <a class="pointer" [routerLink]="'/dashboard/update-pokemon/'+ item.id" style="color: #1878b0" matTooltip="Editar Pokemon">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <a class="pointer" (click)="deletePokemon(item.id)" style="color: #f44235" matTooltip="Eliminar Pokemon">
+              <mat-icon>delete_forever</mat-icon>
+          </a>
+          </div>
+        </mat-card-actions>
+      </mat-card> 
+</div>
+
+
+
+
